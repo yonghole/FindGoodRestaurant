@@ -37,7 +37,9 @@ public class getGoodRestaurant {
             String lineText = null;
             //line reader 생성
 
-            st.executeUpdate("create table if not exists Certificated( CID int, Add varchar(100), Name varchar(100), Type varchar(50), AreaName varchar(10), CName varchar(20), TelNum varchar(20), CMenu varchar(100), primary key (CID));");
+            st.executeUpdate("drop table if exists Certificated cascade");
+
+            st.executeUpdate("create table Certificated( CID int, Add varchar(100), Name varchar(100), Type varchar(50), AreaName varchar(10), CName varchar(20), TelNum varchar(20), CMenu varchar(100), primary key (CID));");
 
             String sql = "insert into Certificated(CID, Add, Name, Type, AreaName, CName, TelNum, CMenu) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = con.prepareStatement(sql);
@@ -59,7 +61,7 @@ public class getGoodRestaurant {
                 String cName = data[8].substring(1, data[8].length()-1);
                 String cMenu = data[25].substring(1, data[25].length()-1);
                 String areaName = data[4].substring(1, data[4].length()-1);
-                if(add.equals("") || name.equals("") || type.equals("") || telNum.equals("") || cMenu.equals("") || areaName.equals("")) continue;
+                if(add.equals("") || name.equals("") || type.equals("") || telNum.equals("  ") || telNum.equals("") || cMenu.equals("") || areaName.equals("")) continue;
 
                 if(cMenu.length() >= 100) continue;
 

@@ -26,9 +26,9 @@ public class findRestaurant {
 
             getBadRestaurant.getBadRestaurantData();
             getGoodRestaurant.getGoodRestaurantData();
+            getReview.getReviewData();
 
 
-            st.executeUpdate("drop table Certificated, Violated");
         }catch(SQLException ex){
             throw ex;
         }

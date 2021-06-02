@@ -45,7 +45,9 @@ public class getBadRestaurant {
             String lineText = null;
             //line reader 생성
 
-            st.executeUpdate("create table if not exists Violated( VID int, AreaName varchar(10), Add varchar(100), Type varchar(50), Name varchar(50), VDate date, VContent varchar(100), Disposal varchar(100), primary key(VID));");
+            st.executeUpdate("drop table if exists Violated cascade");
+
+            st.executeUpdate("create table Violated( VID int, AreaName varchar(10), Add varchar(100), Type varchar(50), Name varchar(50), VDate date, VContent varchar(100), Disposal varchar(100), primary key(VID));");
 
             String sql = "insert into Violated (VID, AreaName, Add, Type, Name, VDate, VContent, Disposal) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = con.prepareStatement(sql);
