@@ -5,7 +5,7 @@ import java.io.*;
 
 /*
 Table Certificated 생성
-CID int
+CID int - primary key (CID)
 Add varchar(100)
 Name varchar(20)
 Type varchar(10)

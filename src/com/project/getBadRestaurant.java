@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 
 /*
 Table Violated 생성
- VID      int
+ VID      int - primary key(VID)
  AreaName varchar(10)
  Add     varchar(100)
  Type     varchar(10)

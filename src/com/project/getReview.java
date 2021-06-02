@@ -5,6 +5,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 
+/*
+Table Review 생성
+ReviewID int - primary key(ReviewID)
+CID int - foreign key(CID) references Certificated(CID))
+Writer varchar(30)
+Review varchar(200)
+Rating int
+ */
+
 public class getReview {
 
     public static void getReviewData(){
