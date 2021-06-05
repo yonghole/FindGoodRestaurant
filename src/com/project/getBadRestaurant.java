@@ -18,9 +18,6 @@ Table Violated 생성
  Disposal varchar(100)
  */
 
-
-
-
 public class getBadRestaurant {
 
 
@@ -59,15 +56,19 @@ public class getBadRestaurant {
             DateFormat format = new SimpleDateFormat("yyyyMMdd");
 
             while((lineText = lineReader.readLine()) != null && count <= 500){
-                if(lineText == null){
+
+                String[] data = lineText.split(",");
+
+                if(data[12].length() < 10 ){
                     continue;
                 }
-                String[] data = lineText.split(",");
+
                 String restaurantName = data[4].substring(1, data[4].length()-1);
                 String type = data[3].substring(1, data[3].length()-1);
                 String restaurantAdd = data[5].substring(1, data[5].length()-1);
                 String rawViolationContent = data[11].substring(1, data[11].length()-1);
                 String rawDisposal = data[14].substring(1, data[14].length()-1);
+
                 String date = data[12].substring(1, 9);
                 if(date.contains(" ") || Integer.parseInt(date) < 20160000) {
                     continue;
