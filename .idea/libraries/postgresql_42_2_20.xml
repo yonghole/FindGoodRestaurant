@@ -2,6 +2,7 @@
   <library name="postgresql-42.2.20">
     <CLASSES>
       <root url="jar://D:/java/postgresql-42.2.20.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../postgresql-42.2.20.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

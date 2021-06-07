@@ -22,9 +22,9 @@ public class getGoodRestaurant {
         Connection con = null;
         Statement st = null;
 
-        String url = "jdbc:postgresql://localhost/";
+        String url = "jdbc:postgresql://localhost:5432/";
         String user = "postgres";
-        String password = "spirit0113";
+        String password = "1234";
         String csvFile = "서울시 지정 인증업소 현황.csv";
 
         try {

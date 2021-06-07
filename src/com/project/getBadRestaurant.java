@@ -27,9 +27,9 @@ public class getBadRestaurant {
         Connection con = null;
         Statement st = null;
 
-        String url = "jdbc:postgresql://localhost/";
+        String url = "jdbc:postgresql://localhost:5432/";
         String user = "postgres";
-        String password = "spirit0113";
+        String password = "1234";
         String csvFile = "서울시 위생업소 전체 행정처분내역 현황.csv";
 
         try {
