@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fb89d5f-c1a8-4113-a7d2-fd981c869296" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/postgresql_42_2_20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/postgresql_42_2_20.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FindRestaurant/com/project/findRestaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FindRestaurant/com/project/findRestaurant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FindRestaurant/com/project/getReview.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FindRestaurant/com/project/getReview.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/project/findRestaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project/findRestaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/project/getBadRestaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project/getBadRestaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/project/getGoodRestaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project/getGoodRestaurant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/project/getReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project/getReview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/리뷰.csv" beforeDir="false" afterPath="$PROJECT_DIR$/리뷰.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +26,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -60,5 +63,16 @@
       <updated>1623008528811</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
