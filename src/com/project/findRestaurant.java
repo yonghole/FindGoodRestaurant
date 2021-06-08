@@ -1,6 +1,7 @@
 package com.project;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.*;
@@ -67,16 +68,7 @@ public class findRestaurant {
                     rs = st.executeQuery(sql);
 
                     int i = 0;
-                    JFrame frame = new JFrame(select_menu1 + "에서 위생 불량 적발 업체를 제외한 결과입니다.");
-                    frame.setLocation(200,400);
-                    frame.setSize(1000,500);
-                    Object record[] = new Object[3];
-                    String header[] = {"번호", "업소명", "주소"};
-                    DefaultTableModel tableModel = new DefaultTableModel(header,0);
-                    JTable table = new JTable(tableModel);
-                    JScrollPane sp = new JScrollPane(table);
-                    frame.setVisible(true);
-                    frame.add(sp,"Center");
+
                     List<List<String>> list = new ArrayList<>();
 
                     while(rs.next()){
@@ -88,19 +80,47 @@ public class findRestaurant {
                         String cmenu = rs.getString("cmenu");
                         String cid = Integer.toString(rs.getInt("cid"));
 
-                        record[0] = Integer.toString(++i);
-                        tmp.add(Integer.toString(i));
-                        record[1] = name;
+//                        record[0] = Integer.toString(++i);
+                        tmp.add(Integer.toString(++i));
+//                        record[1] = name;
                         tmp.add(name);
-                        record[2] = address;
+//                        record[2] = address;
                         tmp.add(address);
                         tmp.add(type);
                         tmp.add(telnum);
                         tmp.add(cmenu);
                         tmp.add(cid);
-                        tableModel.addRow(record);
+//                        tableModel.addRow(record);
                         list.add(tmp);
+
                     }
+                    Object record[][] = new Object[list.size()][3];
+                    for(int j=0;j<list.size();j++){
+                        record[j][0] = list.get(j).get(0);
+                        record[j][1] = list.get(j).get(1);
+                        record[j][2] = list.get(j).get(2);
+                    }
+                    final JFrame frame = new JFrame(select_menu1 + "에서 위생 불량 적발 업체를 제외한 결과입니다.");
+                    frame.setLayout(new BorderLayout());
+//                    frame.setLocation(200,400);
+//                    frame.setSize(1499,1000);
+//                    Object record[] = new Object[3];
+                    String header[] = {"번호", "업소명", "주소"};
+                    DefaultTableModel tableModel = new DefaultTableModel(record,header);
+                    JTable table = new JTable(tableModel);
+                    JScrollPane sp = new JScrollPane(table);
+
+//                    sp.setLocation(0,0);
+//                    sp.setSize(950,200);
+//                    frame.setVisible(true);
+
+                    frame.setSize(new Dimension(1000,1000));
+                    frame.add(sp,BorderLayout.NORTH);
+//                    frame.setLocationRelativeTo(null);
+//                    frame.setUndecorated(true);
+                    frame.setVisible(true);
+//                    frame.repaint();
+
                     int select_store = 0;
                     while(select_store >=-1){
                         System.out.println("업체를 선택해주세요. 표 기준의 번호를 선택해주세요. 메인 화면으로 돌아가시려면 -1을 입력해주세요.\n");
@@ -123,18 +143,12 @@ public class findRestaurant {
                                 }
                                 else if(select_detail == 3){
                                     sql = "select writer, review, rating from review where cid =" + cur.get(6) + " order by rating;";
-                                    JFrame frameReview = new JFrame(select_menu1 + "의 리뷰 정보입니다.");
-                                    frameReview.setLocation(200,400);
-                                    frameReview.setSize(1000,500);
+//                                    JFrame frameReview = new JFrame(select_menu1 + "의 리뷰 정보입니다.");
+//                                    frameReview.setLocation(200,400);
+//                                    frameReview.setSize(1000,500);
 
 
-                                    Object recordReview[] = new Object[3];
-                                    String headerReview[] = {"글쓴이", "리뷰 내용", "별점 (5점 만점)"};
-                                    DefaultTableModel tableModelReview = new DefaultTableModel(headerReview,0);
-                                    JTable tableReview = new JTable(tableModelReview);
-                                    JScrollPane spReview = new JScrollPane(tableReview);
-                                    frameReview.setVisible(true);
-                                    frameReview.add(spReview,"Center");
+                                    List<List<String>> listReview = new ArrayList<>();
                                     rs = st.executeQuery(sql);
                                     while(rs.next()){
                                         List<String> tmp = new ArrayList<>();
@@ -142,11 +156,53 @@ public class findRestaurant {
                                         String review = rs.getString("review");
                                         String rating = Integer.toString(rs.getInt("rating"));
 
-                                        recordReview[0] = writer;
-                                        recordReview[1] = review;
-                                        recordReview[2] = rating;
-                                        tableModelReview.addRow(recordReview);
+//                                        recordReview[0] = writer;
+//                                        recordReview[1] = review;
+//                                        recordReview[2] = rating;
+                                        tmp.add(writer);
+                                        tmp.add(review);
+                                        tmp.add(rating);
+                                        listReview.add(tmp);
+
+
+//                                        tableModelReview.addRow(recordReview);
                                     }
+
+                                    Object recordReview[][] = new Object[listReview.size()][3];
+                                    for(int j=0;j<listReview.size();j++){
+                                        recordReview[j][0] = listReview.get(j).get(0);
+                                        recordReview[j][1] = listReview.get(j).get(1);
+                                        recordReview[j][2] = listReview.get(j).get(2);
+                                    }
+
+//                                    Object recordReview[] = new Object[3];
+                                    String headerReview[] = {"글쓴이", "리뷰 내용", "별점 (5점 만점)"};
+                                    DefaultTableModel tableModelReview = new DefaultTableModel(recordReview,headerReview);
+                                    JTable tableReview = new JTable(tableModelReview);
+                                    JScrollPane spReview = new JScrollPane(tableReview);
+//                                    JPanel pane = new JPanel();
+//                                    pane.setSize(1000,25);
+//                                    pane.setLocation(0,450);
+
+                                    JLabel label = new JLabel(cur.get(1)+"의 리뷰입니다.",SwingConstants.CENTER);
+                                    label.setLocation(0,575);
+                                    label.setSize(1000,25);
+                                    frame.add(label,BorderLayout.CENTER);
+//                                    label.setLabelFor(spReview);
+
+
+//                                    pane.add(label);
+//                                    frame.add(pane,BorderLayout.CENTER);
+//                                    sp.add(tableReview);
+                                    spReview.setLocation(0,600);
+                                    spReview.setSize(1000,150);
+//                                    frameReview.setVisible(true);
+                                    frame.add(spReview,BorderLayout.SOUTH);
+
+
+
+
+
                                 }
                             }
                         }
@@ -167,15 +223,18 @@ public class findRestaurant {
                     rs = st.executeQuery(sql);
                     int i = 0;
                     JFrame frame = new JFrame(select_menu2 + "에서 위생 불량 적발 업체를 검색한 결과입니다.");
-                    frame.setLocation(200,400);
-                    frame.setSize(1000,500);
+                    frame.setLocation(100,50);
+                    frame.setSize(1000,1000);
                     Object record[] = new Object[4];
                     String header[] = {"번호", "업소명", "주소","업종"};
                     DefaultTableModel tableModel = new DefaultTableModel(header,0);
                     JTable table = new JTable(tableModel);
                     JScrollPane sp = new JScrollPane(table);
+//                    sp.setLocation(50,50);
+                    frame.add(sp,BorderLayout.NORTH);
+//                    sp.setSize(800,350);
                     frame.setVisible(true);
-                    frame.add(sp,"Center");
+
                     List<List<String>> list = new ArrayList<>();
 
                     while(rs.next()){
@@ -224,9 +283,9 @@ public class findRestaurant {
                                 }
                                 else if(select_detail == 2){
                                     sql = "select writer, review, rating from review where vid =" + cur.get(6) + " order by rating;";
-                                    JFrame frameReview = new JFrame(select_menu2 + "의 리뷰 정보입니다.");
-                                    frameReview.setLocation(200,400);
-                                    frameReview.setSize(1000,500);
+//                                    JFrame frameReview = new JFrame(select_menu2 + "의 리뷰 정보입니다.");
+//                                    frameReview.setLocation(200,400);
+//                                    frameReview.setSize(1000,500);
 
 
                                     Object recordReview[] = new Object[3];
@@ -234,8 +293,15 @@ public class findRestaurant {
                                     DefaultTableModel tableModelReview = new DefaultTableModel(headerReview,0);
                                     JTable tableReview = new JTable(tableModelReview);
                                     JScrollPane spReview = new JScrollPane(tableReview);
-                                    frameReview.setVisible(true);
-                                    frameReview.add(spReview,"Center");
+//                                    frameReview.setVisible(true);
+//                                    JLabel label = new JLabel(cur.get(1)+"의 리뷰입니다.");
+//                                    label.setLabelFor(spReview);
+//                                    label.setLocation(450,520);
+//                                    frame.add(label);
+                                    spReview.setLocation(0,600);
+                                    spReview.setSize(1000,150);
+
+                                    frame.add(spReview,BorderLayout.SOUTH);
                                     rs = st.executeQuery(sql);
                                     while(rs.next()){
                                         List<String> tmp = new ArrayList<>();
@@ -293,14 +359,15 @@ public class findRestaurant {
                     int i = 0;
                     JFrame frame = new JFrame(menu + "을 취급하는 인증 업체입니다.");
                     frame.setLocation(200, 400);
-                    frame.setSize(1000, 500);
+                    frame.setSize(1000, 1000);
                     Object record[] = new Object[4];
                     String header[] = {"번호", "업소명", "주소", "업종"};
                     DefaultTableModel tableModel = new DefaultTableModel(header, 0);
                     JTable table = new JTable(tableModel);
                     JScrollPane sp = new JScrollPane(table);
+                    frame.add(sp, BorderLayout.NORTH);
                     frame.setVisible(true);
-                    frame.add(sp, "Center");
+
                     List<List<String>> list = new ArrayList<>();
 
                     while (rs.next()) {
@@ -346,9 +413,9 @@ public class findRestaurant {
                                     System.out.println("선택하신 업체 " + cur.get(1) + "의 대표 메뉴는 " + cur.get(5) + " 입니다.\n");
                                 } else if (select_detail == 3) {
                                     sql = "select writer, review, rating from review where cid =" + cur.get(6) + " order by rating;";
-                                    JFrame frameReview = new JFrame(cur.get(1) + "의 리뷰 정보입니다.");
-                                    frameReview.setLocation(200, 400);
-                                    frameReview.setSize(1000, 500);
+//                                    JFrame frameReview = new JFrame(cur.get(1) + "의 리뷰 정보입니다.");
+//                                    frameReview.setLocation(200, 400);
+//                                    frameReview.setSize(1000, 500);
 
 
                                     Object recordReview[] = new Object[3];
@@ -356,8 +423,12 @@ public class findRestaurant {
                                     DefaultTableModel tableModelReview = new DefaultTableModel(headerReview, 0);
                                     JTable tableReview = new JTable(tableModelReview);
                                     JScrollPane spReview = new JScrollPane(tableReview);
-                                    frameReview.setVisible(true);
-                                    frameReview.add(spReview, "Center");
+//                                    frameReview.setVisible(true);
+//                                    frameReview.add(spReview, "Center");
+                                    spReview.setLocation(0,600);
+                                    spReview.setSize(1000,150);
+                                    frame.add(spReview,BorderLayout.SOUTH);
+
                                     rs = st.executeQuery(sql);
                                     while (rs.next()) {
                                         List<String> tmp = new ArrayList<>();
@@ -431,16 +502,17 @@ public class findRestaurant {
                     rs = st.executeQuery(sql);
 
                     int i = 0;
-                    JFrame frame = new JFrame(select_menu1 + "에서 인증 비건 식당을 검색 결과입니다.");
+                    final JFrame frame = new JFrame(select_menu1 + "에서 인증 비건 식당을 검색 결과입니다.");
                     frame.setLocation(200,400);
-                    frame.setSize(1000,500);
+                    frame.setSize(1000,1000);
                     Object record[] = new Object[3];
                     String header[] = {"번호", "업소명", "주소"};
                     DefaultTableModel tableModel = new DefaultTableModel(header,0);
                     JTable table = new JTable(tableModel);
                     JScrollPane sp = new JScrollPane(table);
+
+                    frame.add(sp,BorderLayout.NORTH);
                     frame.setVisible(true);
-                    frame.add(sp,"Center");
                     List<List<String>> list = new ArrayList<>();
 
                     while(rs.next()){
@@ -464,7 +536,9 @@ public class findRestaurant {
                         tmp.add(cid);
                         tableModel.addRow(record);
                         list.add(tmp);
+
                     }
+                    frame.repaint();
                     int select_store = 0;
                     while(select_store >=-1){
                         System.out.println("업체를 선택해주세요. 표 기준의 번호를 선택해주세요. 메인 화면으로 돌아가시려면 -1을 입력해주세요.\n");
@@ -487,9 +561,9 @@ public class findRestaurant {
                                 }
                                 else if(select_detail == 3){
                                     sql = "select writer, review, rating from review where cid =" + cur.get(6) + " order by rating;";
-                                    JFrame frameReview = new JFrame(select_menu1 + "의 리뷰 정보입니다.");
-                                    frameReview.setLocation(200,400);
-                                    frameReview.setSize(1000,500);
+//                                    final JFrame frameReview = new JFrame(select_menu1 + "의 리뷰 정보입니다.");
+//                                    frameReview.setLocation(200,400);
+//                                    frameReview.setSize(1000,500);
 
 
                                     Object recordReview[] = new Object[3];
@@ -497,8 +571,10 @@ public class findRestaurant {
                                     DefaultTableModel tableModelReview = new DefaultTableModel(headerReview,0);
                                     JTable tableReview = new JTable(tableModelReview);
                                     JScrollPane spReview = new JScrollPane(tableReview);
-                                    frameReview.setVisible(true);
-                                    frameReview.add(spReview,"Center");
+//                                    frame.setVisible(true);
+                                    spReview.setLocation(0,600);
+                                    spReview.setSize(1000,150);
+                                    frame.add(spReview,BorderLayout.SOUTH);
                                     rs = st.executeQuery(sql);
                                     while(rs.next()){
                                         List<String> tmp = new ArrayList<>();
@@ -510,6 +586,7 @@ public class findRestaurant {
                                         recordReview[1] = review;
                                         recordReview[2] = rating;
                                         tableModelReview.addRow(recordReview);
+//                                        frameReview.repaint();
                                     }
                                 }
                             }
